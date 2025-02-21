@@ -1,0 +1,44 @@
+.grid-container {
+    display: grid;
+    background-color: #f2f2f2;
+    height: 200px;
+    margin: 1rem 0 1.5rem;
+}
+
+.column-1 {
+    background-color: #e2f0cb; 
+ }
+ 
+.column-2 {
+    background-color: #fdd7c2; 
+}
+ 
+.column-3 {
+    background-color: #a3e1dc; 
+}
+
+.column-4 {
+    background-color: #9ab7d3; 
+}
+
+
+
+.example-box-001 {
+    grid-template-columns: 100px 100px 100px;
+}
+
+.example-box-002 {
+    grid-template-columns: 100px 200px 150px;
+}
+
+.example-box-003 {
+    grid-template-columns: 15% 30% 15%;
+}
+
+.example-box-004 {
+    grid-template-columns: 15% auto 15%;
+}
+
+.example-box-005 {
+    grid-template-columns: 100px 25% 250px auto;
+}

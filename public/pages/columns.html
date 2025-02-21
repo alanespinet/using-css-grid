@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/examples.css">
+
+    <title>Grid Columns</title>
+</head>
+<body>
+    <div class="page-layout">
+        <header class="bg-green">
+            <div class="container">
+                <h1 class="text-center white mb-0">CSS Grid - Columns</h1>
+            </div>
+        </header>
+
+        <main class="bg-white content-padding">
+            <div class="container">
+                <h2>The <span class="green">grid-template-columns</span> property</h2>
+                <p><strong>Columns</strong> in CSS Grid can be represented by different properties, being <strong>grid-template-columns</strong> the most common one. This property will accept one or more values representing:</p>
+
+                <ul class="lis-no-margin">
+                    <li>The number of columns of the Grid</li>
+                    <li>The width of each one</li>
+                </ul>
+
+                <p>As we will see in a bit, it's important to note that there is a difference between <strong>real columns number</strong> and <strong>visible columns number</strong>. The first one represents the amount of columns the grid is featuring, while the second one represents the amount of columns we are seeing.</p>
+
+                <p>Column widths in CSS Grid can be represented by absolute values, like <strong>pixels</strong> and relative values like <strong>percentages</strong> and a new unit inherent to Grid: <strong>fractions</strong>.</p>
+
+                <h3 class="mt-2">Examples</h3>
+
+                <h4 class="green mt-2">Common Measurements</h4>
+                <p>1- We create a grid with <strong>3 columns</strong>, each one of <strong>100px width</strong></p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+}
+</pre>
+
+                <p>Where each of the <strong>100px</strong> appearances relates to one of the columns. If we color the columns a bit (with the <strong>grid-container</strong> having a gray background color), we could see the result:</p>
+                
+                <div class="example-box example-box-001 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                </div>
+                
+                <p>We can see that, since we are giving each column an absolute width (100px), <strong>they wont fill the whole containing space</strong>. All the gray area to the right is the containing DIV</p>
+                <p>Also note that, by default, the height of the grid elements is set to <strong>stretch</strong>. This is one of the best things we have in CSS Grid.</p> 
+                <p>The columns can have, also, different widths, of course:</p>
+
+                <p class="mt-2">2- We create a grid with <strong>3 columns</strong>, the first one with <strong>100px width</strong>, the second one with <strong>200px width</strong> and the third one with <strong>150px width</strong>:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 200px 150px;
+}
+</pre>
+                <div class="example-box example-box-002 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                </div>
+
+                <p>We can also use percentages. These values will be <strong>responsive</strong> to the container's width:</p>
+                <p class="mt-2">3- We create a grid with <strong>3 columns</strong>, the first one with <strong>15% of its container's width</strong>, the second one with <strong>30% of its container's width</strong> and the third one again with <strong>15% of its container's width</strong>:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: 15% 30% 15%;
+}
+</pre>
+
+                <div class="example-box example-box-003 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                </div>
+
+                <p>If we want to <strong>fill the gap</strong>, we can use the special value <strong>auto</strong>:</p>
+                
+                <p class="mt-2">4- We create a grid with <strong>3 columns</strong>, the first and third ones with <strong>15% of its container's width</strong>, and the second one with <strong>the remaining available space</strong>, since it uses <strong>auto</strong> as its width value:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: 15% auto 15%;
+}
+</pre>
+
+                <div class="example-box example-box-004 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                </div>
+
+                <p>As it is obvious, we can <strong>mix values</strong>:</p>
+                
+                <p class="mt-2">5- We create a grid with <strong>4 columns</strong>, the first one with <strong>100px of width</strong>, the second one with <strong>25% of its container's width</strong>, the third one with <strong>250px of  width</strong> and the last one with the <strong>rest of the space</strong>, since it uses <strong>auto</strong> as its width value:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 25% 250px auto;
+}
+</pre>
+
+                <div class="example-box example-box-005 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                </div>
+
+                <h4 class="green mt-4">Fraction Measurements</h4>
+
+
+
+
+
+                <div class="back-wrapper mt-4">
+                    <a href="/public/">Back to Homepage</a>
+                </div>
+            </div><!-- /.container -->
+        </main>
+
+        <footer class="bg-green">
+            <div class="container">
+                <p class="text-center white mb-0">Learning project created by <a href="https://alanespinet.com">Alan Espinet</a>. Not intending to monetize nor getting ANY advantage other than practicing CSS Grid.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

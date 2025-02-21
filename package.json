@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx live-server --open=/public"
+    "start": "npx live-server --open=/public --port=4400"
   },
   "keywords": [],
   "author": "",
