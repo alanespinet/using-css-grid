@@ -13,9 +13,75 @@
     <title>Using CSS Grid</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Using CSS GRID</h1>
-        <p>This example shows how to use CSS Grid</p>
+    <div class="home-layout">
+        <header class="bg-green">
+            <div class="container">
+                <h1 class="text-center white">CSS Grid Examples Guide</h1>
+                <p class="text-center white mb-0">This project serves as a quick guide of CSS Grid properties and techniques. Several "layouts" are featured to show different ways to use grid</p>
+            </div>
+        </header>
+
+        <aside class="bg-light-green">
+            <h2>Example List</h2>
+
+            <ul>
+                <li>
+                    <a href="#">Grid Basic Use</a>
+                    <span class="desc d-block mb-0">CSS Grid basic properties to create a homogeneous (table-like) layout</span>
+                </li>
+
+                <li>
+                    <a href="#">Grid Columns</a>
+                    <span class="desc d-block mb-0">CSS Grid properties to handle columns widths and positions</span>
+                </li>
+
+                <li>
+                    <a href="#">Grid Rows</a>
+                    <span class="desc d-block mb-0">CSS Grid properties to handle rows widths and positions</span>
+                </li>
+
+                <li>
+                    <a href="#">Grid Layouts</a>
+                    <span class="desc d-block mb-0">CSS Grid properties to create irregular layouts</span>
+                </li>
+
+                <li>
+                    <a href="#">Grid Items</a>
+                    <span class="desc d-block mb-0">CSS Grid properties to control the position of elements inside Grid Items</span>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="bg-white">
+            <div class="developer-picture">
+                <figure class="developer text-center">
+                    <img src="./assets/images/alan.jpeg" alt="Picture of Alan Espinet, the Developer" class="img-fluid rounded">
+                    <figcaption>Alan Espinet <span class="developer-title d-block w-100 text-decoration-none">Full-Stack Developer</span></figcaption>
+                </figure>
+            </div>
+
+            <div class="developer-note">
+                <h2 class="green">About me</h2>
+                <div class="large-text mb-3">
+                    <p>I am a passionate and experienced full-stack web developer with 20 years of hands-on coding expertise. Over the years, I have honed my skills across all layers of web development, from front-end design to back-end architecture, always staying at the forefront of emerging technologies and best practices. I thrive on continuous improvement, consistently pushing myself to learn new tools, languages, and frameworks to enhance my craft. My love for problem-solving and constant study drives me to grow both as a developer and as a professional, always eager to take on new challenges and create innovative solutions.</p>
+                </div>
+
+                <h3 class="green">Disclaimer note:</h3>
+                <div class="large-text">
+                    <p>This project is a personal study exercise created SOLELY for the purpose of learning and practicing CSS Grid. The images, names, and other assets used within this project are from the Monster Hunter series, which is the property of Capcom Co., Ltd. I do not claim ownership of any copyrighted material used herein.</p>
+                    
+                    <p>This project is strictly NON-commercial and will NOT be used for any form of monetization or distribution. It is intended only as a coding practice exercise and will remain a personal, educational endeavor.</p>
+
+                    <p><strong>If required, I will remove any copyrighted material upon request.</strong></p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-green">
+            <div class="container">
+                <p class="text-center white mb-0">Learning project created by <a href="https://alanespinet.com">Alan Espinet</a>. Not intending to monetize nor getting ANY advantage other than practicing CSS Grid.</p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
