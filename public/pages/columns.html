@@ -37,6 +37,12 @@
                 <p>1- We create a grid with <strong>3 columns</strong>, each one of <strong>100px width</strong></p>
 
 <pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
 .grid-container {
     display: grid;
     grid-template-columns: 100px 100px 100px;
@@ -55,6 +61,8 @@
                 <p>Also note that, by default, the height of the grid elements is set to <strong>stretch</strong>. This is one of the best things we have in CSS Grid.</p> 
                 <p>The columns can have, also, different widths, of course:</p>
 
+                <p class="note"><span class="underlined ultrabold">NOTE</span>: Except when updated, HTML for an example will be always the last one shown.</p>
+
                 <p class="mt-2">2- We create a grid with <strong>3 columns</strong>, the first one with <strong>100px width</strong>, the second one with <strong>200px width</strong> and the third one with <strong>150px width</strong>:</p>
 
 <pre class="code">
@@ -70,6 +78,7 @@
                 </div>
 
                 <p>We can also use percentages. These values will be <strong>responsive</strong> to the container's width:</p>
+                
                 <p class="mt-2">3- We create a grid with <strong>3 columns</strong>, the first one with <strong>15% of its container's width</strong>, the second one with <strong>30% of its container's width</strong> and the third one again with <strong>15% of its container's width</strong>:</p>
 
 <pre class="code">
@@ -107,6 +116,13 @@
                 <p class="mt-2">5- We create a grid with <strong>4 columns</strong>, the first one with <strong>100px of width</strong>, the second one with <strong>25% of its container's width</strong>, the third one with <strong>250px of  width</strong> and the last one with the <strong>rest of the space</strong>, since it uses <strong>auto</strong> as its width value:</p>
 
 <pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
 .grid-container {
     display: grid;
     grid-template-columns: 100px 25% 250px auto;
@@ -121,13 +137,314 @@
                 </div>
 
                 <h4 class="green mt-4">Fraction Measurements</h4>
+                <p>Fraction Measurements, represented as <strong>fr</strong>, determine a "fraction" of the container's width. A "fraction" will always be relative to the total number of columns in the Grid. This means that, for example, in a 4-column grid, <strong>2fr</strong> will mean half of the space, while <strong>1fr</strong> will mean 25% of the container's width. It is not common to combine "fractions" with other measurements.</p>
+                    
+                <p>For example:</p>
 
+                <p class="mt-2">6- We create a grid with <strong>3 columns total</strong>. The first one and third one have <strong>1fr</strong>, that is 25% of the container's width, while the second one has <strong>2fr</strong>, that is 50% of the container's width:</p>
 
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+&lt;/div&gt;
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+</pre>
 
+                <div class="example-box example-box-006 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                </div>
+
+                <p>"Fractions" are a relative measurement, what it means that they will "expand and shrink" depending on the container's width.</p>
+
+                <p class="mt-2">7- Sometimes you need to create several columns of the same width. For example, in the following example, you want to create <strong>5 columns with 1fr each</strong>, that is every column will use 20% of the container's width. You can do it like this:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+</pre>
+
+                <div class="example-box example-box-007 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                </div>
+
+                <h4 class="mt-3">The <span class="green">repeat</span> function</h4>
+                <p class="mt-1">8- You can also use the special <strong>repeat</strong> function. This function receives the amount of columns we want to create and the width each one of them will have. This way, <strong>1fr 1fr 1fr 1fr 1fr</strong> would be also represented as <strong>repeat(5, 1fr)</strong>:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+</pre>
+
+                <div class="example-box example-box-008 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                </div>
+
+                <p class="mt-2">9- Interestinly enough, when you create columns using CSS Grid, if you have more columns in your HTML than the ones defined in the CSS, the extra columns will be arranged in the "next available row":</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+    &lt;div class="column-6"&gt;&lt;/div&gt;
+    &lt;div class="column-7"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+</pre>
+
+                <div class="example-box example-box-009 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                    <div class="column-6"></div>
+                    <div class="column-7"></div>
+                </div>                
+
+                <p>We will go into this in <a href="./rows.html">Rows</a>, but you can see how rows are taking also the vertical space of the container</p>
+
+                <p class="mt-2">10- We can use <strong>repeat</strong> (or several <strong>fr</strong> measurements): to create homogeneous tables very simply with grid:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+    &lt;div class="column-6"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+</pre>
+
+                <div class="example-box example-box-010 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                    <div class="column-6"></div>
+                </div>
+
+                <p>Once again, because of the nature of Grid, grid cells are <strong>stretch</strong>. You will see later that you can control this.</p>
+
+                <h4 class="mt-3">The <span class="green">minmax</span> function</h4>
+                <p class="mt-1">11- Since <strong>fr</strong> "shares" the width of the container based of the coeficient of the units and the amount of columns, we can find ourselves in a situation where a particular columns "shrinked" more than what we needed. For cases like these ones, we can use the special <strong>minmax</strong> function. This function can be used in in place of a measurement of a column, and receives the minimun and maximum values that column can have. For example, we might have 5 columns equally spaced (<strong>1fr each</strong>) but maybe, we dont want the middle one to be smaller than <strong>500px</strong>. We can do it like this:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr minmax(500px, 1fr) 1fr 1fr;
+}
+</pre>
+
+                <div class="example-box example-box-011 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                </div>
+
+                <p>If the column is greater than <strong>500px</strong>, it will use <strong>1fr</strong> as its measurement. If, however, the column were to shrink below <strong>500px</strong>, the minmax function would keep it at <strong>500px</strong>, because that is its minimim width.Since we have 2 columns with 1fr to each side of the <strong>minmax</strong> call, we could've also done this, using <strong>repeat</strong>:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) minmax(500px, 1fr) repeat(2, 1fr);
+}
+</pre>
+
+                <h4 class="mt-3"><span class="green">auto-fill</span> and <span class="green">auto-fit</span></h4>
+                <p class="mt-1">12- Another one of these especial values is <strong>auto-fill</strong>. We use it by replacing the "number" in <strong>repeat</strong>, and its effect will be auto-adding (and auto-removing) columns from a row as long as we have (or not) a specific space (columns and moved up and down between rows). For example, in the following code, we create <strong>300px</strong> width columns in every row as long as we have the space available for them:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+    &lt;div class="column-6"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+}
+</pre>
+
+                <div class="example-box example-box-012 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                    <div class="column-6"></div>
+                </div>
+
+                <p class="note"><span class="underlined ultrabold">NOTE</span>: Resize the browser and check how columns cells are moved to the first and second rows depending on the available space. That is the effect of <strong>auto-fill</strong>.</p>
+                
+                <p class="mt-2">13- One PRETTY IMPORTANT detail about <strong>auto-fill</strong> is that it creates empty columns if we have the space to contain them but not the elements. For example, in the following code, we keep the CSS shown in the previous example, but we delete the columns 3 to 6 from the HTML:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+}
+</pre>
+
+                <div class="example-box example-box-012 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                </div>
+
+                <p>You can see that only two columns are shown. But the inspector shows a VERY different story:</p>
+
+                <img src="../assets/images/auto-fit-001.jpg" class="img-fluid" alt="">
+
+                <p class="mt-2">14- As we can see, <strong>auto-fill</strong> will "create" more columns if we don't have enough elements. That doesnt happen with our new special value: <strong>auto-fit</strong>. The use of it it's exactly the same:</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+}
+</pre>
+
+<div class="example-box example-box-013 grid-container">
+    <div class="column-1"></div>
+    <div class="column-2"></div>
+</div>
+
+                <p>You can see now that we don't have the auto-columns. Columns will be created ONLY if elements exist:</p>
+
+                <img src="../assets/images/auto-fit-002.jpg" class="img-fluid" alt="">
+
+                <p class="mt-2">15- One really cool way of using <strong>auto-fit</strong> is combining it with <strong>minmax</strong> to get all the available space unless there are new elements to place. We need two examples for showing this:</p>
+
+                <p>First with three elements: All the space is used</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+</pre>
+
+<div class="example-box example-box-014 grid-container">
+    <div class="column-1"></div>
+    <div class="column-2"></div>
+    <div class="column-3"></div>
+</div>
+
+                <p>And now with five elements: All the space is used and elements are created in row 2</p>
+
+<pre class="code">
+&lt;div class="grid-container"&gt;
+    &lt;div class="column-1"&gt;&lt;/div&gt;
+    &lt;div class="column-2"&gt;&lt;/div&gt;
+    &lt;div class="column-3"&gt;&lt;/div&gt;
+    &lt;div class="column-4"&gt;&lt;/div&gt;
+    &lt;div class="column-5"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+</pre>
+
+                <div class="example-box example-box-014 grid-container">
+                    <div class="column-1"></div>
+                    <div class="column-2"></div>
+                    <div class="column-3"></div>
+                    <div class="column-4"></div>
+                    <div class="column-5"></div>
+                </div>
+
+                <p class="mt-2">Go ahead and resize the browser window (shrink it) to see how, in both examples, whenever there is no remaining space to hold enough 300px elements per row, the grid changes reorganizing the cells to fit in new rows. This technique is one of those ones we use a lot to keep beautiful table-like grids "stable".</p>
+
+                <p class="note"><span class="underlined ultrabold">NOTE</span>: This example doesn't mean that <strong>auto-fill</strong> is never used just because <strong>auto-fit</strong> exists. Sometimes we DO NEED the extra columns created by <strong>auto-fill</strong>.</p>
+
+                <p class="mt-2">This example concludes the basic columns layouts of CSS Grid. We will explore now how Rows work, that by the way it is very similar</p>
 
                 <div class="back-wrapper mt-4">
-                    <a href="/public/">Back to Homepage</a>
+                    <ul>
+                        <li><a href="./rows.html">Next: Rows</a></li>
+                        <li><a href="./public/">Back to Homepage</a></li>
+                    </ul>
                 </div>
             </div><!-- /.container -->
         </main>

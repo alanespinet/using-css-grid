@@ -106,8 +106,16 @@ a {
     margin-bottom: 3rem;
 }
 
+.mt-1 {
+    margin-top: 1rem;
+}
+
 .mt-2 {
     margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
 }
 
 .mt-4 {
@@ -165,11 +173,25 @@ pre.code {
     line-height: 1.6;
     margin-bottom: 1.6rem;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     overflow: auto;
     padding: 1rem 1.5rem;
     display: block;
     word-wrap: break-word;
+}
+
+.note {
+    border: 1px solid #2f2f2f;
+    background-color: #eee;
+    padding: 15px;
+}
+
+.ultrabold {
+    font-weight: 900;
+}
+
+.underlined {
+    text-decoration: underline;
 }
 
 @media (max-width: 1199px){ 
