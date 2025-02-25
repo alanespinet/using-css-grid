@@ -19,113 +19,199 @@
 
         <main class="bg-white content-padding">
             <div class="container">
-                <h2>The <span class="green">grid-template-rows</span> property</h2>
-                <p><strong>Rows</strong> in CSS Grid can be represented by different properties, being <strong>grid-template-rows</strong> the most common one. This property will accept one or more values representing:</p>
-
-                <ul class="lis-no-margin">
-                    <li>The number of rows of the Grid</li>
-                    <li>The height of each one</li>
-                </ul>
-
-                <p>As it happens with Columns, Row heights in CSS Grid can be represented by absolute values, like <strong>pixels</strong> and relative values like <strong>percentages</strong>.</p>
+                <h2>Basic Tables</h2>
+                <p>We can use everything we have learned in <a href="./columns.html">Columns</a> and <a href="./columns.html">Rows</a> to create tables (also known as uniform grids). As you will see, for the first time, we are adding content to the cells of the grid, since we need to see how they react to that content.</p>
 
                 <h3 class="mt-2">Examples</h3>
 
-                <p class="mt-2">1- We create a grid with <strong>3 rows</strong>, each one of <strong>100px height</strong></p>
+                <p class="mt-2">1- We create a grid (with <strong>3 columns</strong> and <strong>2 rows</strong>). We give each column <strong>200px wide</strong> and each row <strong>100px height</strong>:</p>
 
 <pre class="code">
-&lt;div class="grid-container"&gt;
-    &lt;div class="row-1"&gt;&lt;/div&gt;
-    &lt;div class="row-2"&gt;&lt;/div&gt;
-    &lt;div class="row-3"&gt;&lt;/div&gt;
+&lt;div class="example-box example-box-r001 grid-row-container"&gt;
+    &lt;div class="cell-1"&gt;cell 1&lt;/div&gt;
+    &lt;div class="cell-2"&gt;cell 2&lt;/div&gt;
+    &lt;div class="cell-3"&gt;cell 3&lt;/div&gt;
+    &lt;div class="cell-4"&gt;cell 4&lt;/div&gt;
+    &lt;div class="cell-5"&gt;cell 5&lt;/div&gt;
+    &lt;div class="cell-6"&gt;cell 6&lt;/div&gt;
 &lt;/div&gt;
 
 .grid-container {
     display: grid;
-    grid-template-rows: 100px 100px 100px;
-}
-</pre>
-
-                <p>Where each of the <strong>100px</strong> appearances relates to one of the rows:</p>
-                
-                <div class="example-box example-box-r001 grid-row-container">
-                    <div class="row-1"></div>
-                    <div class="row-2"></div>
-                    <div class="row-3"></div>
-                </div>
-
-                <p>Since we dont have columns defined, each cell of the Grid takes 100% of the container's width.</p> 
-
-                <p class="mt-2">2- As we did with columns, we can use <strong>auto</strong> to "fill the gap" between two other rows. For example, in the next example, the grid container is 500px tall. The first column takes 100px of them; the third one takes 50px of them; and the middle one uses auto to take all the "remaining space":</p>
-
-<pre class="code">
-.grid-container {
-    display: grid;
-    grid-template-rows: 100px auto 50px;
-}
-</pre>
-
-                <div class="example-box example-box-r002 grid-row-container grid-row-container-500">
-                    <div class="row-1"></div>
-                    <div class="row-2"></div>
-                    <div class="row-3"></div>
-                </div>
-
-                <p>This could have been EASILY a scenario where the row-1 was the header, the row-3 was the footer, and the row-2 was the content of a page. For that matter, we would normally use <strong>min-height: 100vh;</strong> over the grid container to strecth it across the height of the page.</p>
-                
-                <p>We can also use <strong>repeat</strong> and <strong>minmax</strong> with rows the same way as with columns.</p>
-                
-                <p class="mt-2">3- We can have rows that are not actually defined in size in our grid. When this happens, these rows "share" the rest of the available grid-container's height. For example, following we have a grid-container of <strong>500px</strong>, and 4 rows: the first one has <strong>50px</strong> height, the second one has <strong>30px</strong> height, and the third and fourth, since they don't have any height declared, they will share the the remaing <strong>420px</strong> between them, each one taking <strong>210px</strong>:</p> 
-                
-<pre class="code">
-&lt;div class="grid-container"&gt;
-    &lt;div class="row-1"&gt;&lt;/div&gt;
-    &lt;div class="row-2"&gt;&lt;/div&gt;
-    &lt;div class="row-3"&gt;&lt;/div&gt;
-    &lt;div class="row-4"&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-.grid-container {
-    display: grid;
-    grid-template-rows: 50px 30px;
-}
-</pre>
-
-                <div class="example-box example-box-r003 grid-row-container grid-row-container-500">
-                    <div class="row-1"></div>
-                    <div class="row-2"></div>
-                    <div class="row-3"></div>
-                    <div class="row-4"></div>
-                </div>
-
-                <h4 class="mt-3">The <span class="green">grid-auto-rows</span> property</h4>
-                <p class="mt-1">4- These rows (like <strong>row-3</strong> and <strong>row-4</strong> in our example) that are NOT declared with <strong>grid-template-rows</strong> are called <span class="green">auto tracks</span> and we can give a height to ALL of them through the <strong>grid-auto-rows</strong> property. In the next code, we assign <strong>100px</strong> to them. Look at how we still have, at the end, available space inside the grid container:</p>
-
-<pre class="code">
-&lt;div class="grid-container"&gt;
-    &lt;div class="row-1"&gt;&lt;/div&gt;
-    &lt;div class="row-2"&gt;&lt;/div&gt;
-    &lt;div class="row-3"&gt;&lt;/div&gt;
-    &lt;div class="row-4"&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-.grid-container {
-    display: grid;
-    grid-template-rows: 50px 30px;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: 100px;
     grid-auto-rows: 100px;
+    min-height: 300px;
 }
 </pre>
-                    
-                <div class="example-box example-box-r004 grid-row-container grid-row-container-500">
-                    <div class="row-1"></div>
-                    <div class="row-2"></div>
-                    <div class="row-3"></div>
-                    <div class="row-4"></div>
+  
+                <div class="example-box example-box-t001 grid-table">
+                    <div class="cell-1">cell 1</div>
+                    <div class="cell-2">cell 2</div>
+                    <div class="cell-3">cell 3</div>
+                    <div class="cell-4">cell 4</div>
+                    <div class="cell-5">cell 5</div>
+                    <div class="cell-6">cell 6</div>
                 </div>
 
-                <p class="note"><span class="underlined ultrabold">NOTE</span>: We also have the <strong>grid-auto-columns</strong> property, and it has THE SAME effect with columns. It is not, however, as used as <strong>grid-auto-rows</strong>.</p>
+                <p>You can see that we are combining <strong>grid-template-rows</strong> with <strong>grid-auto-rows</strong> for the rows. We normally will know how many columns we will have, but knowing how many rows forehand will heavily depend on what we are creating. Curiously enough, you can remove <strong>grid-template-rows</strong> from the formula, and stay ONLY with <strong>grid-auto-rows</strong>, and it will work perfectly. After all, the first row STILL is an auto-row:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-auto-rows: 100px;
+    min-height: 300px;
+}
+</pre>
+
+                <p class="note"><span class="underlined ultrabold">NOTE</span>: We need the grid-container to be a bit taller than the elements to illustrate vertical alignment later in this chapter. That's why we have the <strong>min-height</strong> property in place. As always, if we dont include it, the grid-container would be as height as its content.</p>
+
+                <h4 class="mt-3">Adding space between cells with the <span class="green">gap</span> property</h4>
+                
+                <p class="mt-1">You can use the <strong>gap</strong> property to add space between cells. If only one value is used, the space will apply herizontally and vertically. If two values are used, the first one determines the space between rows, while the second one will determine the space between columns. No space is added between the elements and the 'limits' of the grid:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-auto-rows: 100px;
+    gap: 15px 30px;
+    min-height: 300px;
+}
+</pre>
+
+                <div class="example-box example-box-t002 grid-table">
+                    <div class="cell-1">cell 1</div>
+                    <div class="cell-2">cell 2</div>
+                    <div class="cell-3">cell 3</div>
+                    <div class="cell-4">cell 4</div>
+                    <div class="cell-5">cell 5</div>
+                    <div class="cell-6">cell 6</div>
+                </div>
+
+
+                <p class="mt-2">If you need to add space to only one of the sides (rows or columns) or if you want to do it separately, you can use the two different properties: <strong>row-gap</strong> and <strong>column-gap</strong>:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-auto-rows: 100px;
+    row-gap: 15px;
+    column-gap: 30px;
+    min-height: 300px;
+}
+</pre>
+
+                <p class="mt-1">It's way more common, however, adding the same space to both measurements (the change in the colors is intended):</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-auto-rows: 100px;
+    gap: 1em;
+    min-height: 300px;
+}
+</pre>
+
+                <div class="example-box example-box-t003 grid-table">
+                    <div class="cell">cell 1</div>
+                    <div class="cell">cell 2</div>
+                    <div class="cell">cell 3</div>
+                    <div class="cell">cell 4</div>
+                    <div class="cell">cell 5</div>
+                    <div class="cell">cell 6</div>
+                </div>
+
+
+                <h4 class="mt-3">Items Alignment</h4>
+                
+                <p class="mt-1">We will use the <strong>justify-content</strong> and <strong>align-items</strong> properties (yes, the same ones as flex) to align the elements in a grid-container horizontally and vertically, respectively. For <strong>justify-content</strong>, we have the following values:</p>
+
+                <ul class="lis-no-margin">
+                    <li>start</li>
+                    <li>center</li>
+                    <li>end</li>
+                    <li>left</li>
+                    <li>right</li>
+                    <li>space-between</li>
+                    <li>space-around</li>
+                    <li>space-evenly</li>
+                    <li>stretch</li>
+                </ul>
+
+                <p>For <strong>align-items</strong>, we have the following values:</p>
+
+                <ul class="lis-no-margin">
+                    <li>stretch</li>
+                    <li>start</li>
+                    <li>center</li>
+                    <li>end</li>
+                    <li>right</li>
+                </ul>
+
+                <p>Now, bare in mind that both <strong>justify-content</strong> and <strong>align-items</strong> will FIRST align the content within each of their cells. However, <strong>justify-content</strong> will also work table-wise when the columns are not enough to fill all the width of the container. This will NOT happen with <strong>align items</strong>. For example:</p>
+                
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-auto-rows: 100px;
+    gap: 1rem;
+
+    justify-content: space-between;
+    align-items: start;
+}
+</pre>
+
+                <div class="example-box example-box-t004 grid-table">
+                    <div class="cell">cell 1</div>
+                    <div class="cell">cell 2</div>
+                    <div class="cell">cell 3</div>
+                    <div class="cell">cell 4</div>
+                    <div class="cell">cell 5</div>
+                    <div class="cell">cell 6</div>
+                </div>
+
+                <p>There is A LOT of information in this code. First, since each column has <strong>200px of width</strong>, the three columns will NOT fill the total width of the grid-container. Because of that, <strong>justify-content</strong> will work table-wise, and since the value is <strong>space-between</strong>, the items will get scattered howizontally. We can NOT say the same with <strong>align-items</strong>: even when the two rows' height is not enough to fill the total height of the grid-container, the items are vertically aligned relative to EACH CELL, not table-wise.</p>
+
+                <p>Let's see now what happens when each column is <strong>1fr of width</strong>, and the total width of the container is filled:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 100px;
+    gap: 1rem;
+
+    justify-content: space-between;
+    align-items: start;
+}
+</pre>
+
+                <div class="example-box example-box-t005 grid-table">
+                    <div class="cell">cell 1</div>
+                    <div class="cell">cell 2</div>
+                    <div class="cell">cell 3</div>
+                    <div class="cell">cell 4</div>
+                    <div class="cell">cell 5</div>
+                    <div class="cell">cell 6</div>
+                </div>
+
+                <p>Now <strong>justify-content</strong> besically doesnt matter, since the only space between cells is the one determined by <strong>gap</strong>. In this case, OBVIOUSLY, we could center THE CONTENT of the cell using <strong>text-align</strong>, <strong>flexbox</strong> or any other technique we want, even <strong>grid</strong>!</p>
+
+                <p>The default value for <strong>justify-content</strong> is <strong>start</strong>, while the default value for <strong>align-items</strong> is <strong>stretch</strong>. Finally, we can use the <strong>place-items</strong>, that is just a shorthand for both <strong>justify-content</strong> and <strong>align-items</strong>. We, however, first write the <strong>align-items</strong> value, and then the <strong>justify-content</strong> one. So, for example <span class="green"><strong>place-items: center space-between</strong></span>.</p>
+
+
+                <h4 class="mt-3">Row Heights</h4>
+                
+                <p class="mt-1">...:</p>
+
 
                 <p class="mt-2">This example concludes the basic rows layouts of CSS Grid. It looks pretty slim compared against the big "Columns" chapter, but manu of the basics were covered in that "Columns" chapter, and the rest easy properties will be seen in the next chapter, <a href="./grid-tables.html">Next: Grid Tables</a>.</p>
+
 
                 <div class="back-wrapper mt-4">
                     <ul>
