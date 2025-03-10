@@ -20,7 +20,7 @@
         <main class="bg-white content-padding">
             <div class="container">
                 <h2>Basic Tables</h2>
-                <p>We can use everything we have learned in <a href="./columns.html">Columns</a> and <a href="./columns.html">Rows</a> to create tables (also known as uniform grids). As you will see, for the first time, we are adding content to the cells of the grid, since we need to see how they react to that content.</p>
+                <p>We can use everything we have learned in <a href="./columns.html">Columns</a> and <a href="./rows.html">Rows</a> to create tables (also known as uniform grids). As you will see, for the first time, we are adding content to the cells of the grid, since we need to see how they react to that content.</p>
 
                 <h3 class="mt-2">Examples</h3>
 
@@ -111,7 +111,7 @@
     display: grid;
     grid-template-columns: repeat(3, 200px);
     grid-auto-rows: 100px;
-    gap: 1em;
+    gap: 1rem;
     min-height: 300px;
 }
 </pre>
@@ -126,9 +126,18 @@
                 </div>
 
 
-                <h4 class="mt-3">Items Alignment</h4>
+                <h4 class="mt-4 green">Grid Alignments</h4>
                 
-                <p class="mt-1">We will use the <strong>justify-content</strong> and <strong>align-items</strong> properties (yes, the same ones as flex) to align the elements in a grid-container horizontally and vertically, respectively. For <strong>justify-content</strong>, we have the following values:</p>
+                <p class="mt-1">When it comes to alignment, we need to understand that CSS Grid has two very different levels:</p>
+                    
+                <ul class="lis-no-margin">
+                    <li>Grid-level alignments, handled basically with the <strong>justify-content</strong> and <strong>align-content</strong> properties. These ones align <strong>CELLS RELATIVE TO THE GRID</strong>.</li>
+                    <li>Item-level alignments, handled basically with the <strong>justify-items</strong>, <strong>align-items</strong>, <strong>justify-self</strong> and <strong>align-self</strong> properties. These ones align <strong>CONTENT RELATIVE TO A CELL</strong>.</li>
+                </ul>  
+                
+                <h4 class="mt-3">Grid-level Alignments</h4>
+
+                <p class="mt-1">For BOTH <strong>justify-content</strong> and <strong>align-content</strong>, we will have the following values:</p>
 
                 <ul class="lis-no-margin">
                     <li>start</li>
@@ -142,18 +151,8 @@
                     <li>stretch</li>
                 </ul>
 
-                <p>For <strong>align-items</strong>, we have the following values:</p>
+                <p class="mt-1">Think about them as a 2-way flexbox (that is basically what a grid is). In the following example, we create a Grid that has its items horizontally spread and vertically centered:</p>
 
-                <ul class="lis-no-margin">
-                    <li>stretch</li>
-                    <li>start</li>
-                    <li>center</li>
-                    <li>end</li>
-                    <li>right</li>
-                </ul>
-
-                <p>Now, bare in mind that both <strong>justify-content</strong> and <strong>align-items</strong> will FIRST align the content within each of their cells. However, <strong>justify-content</strong> will also work table-wise when the columns are not enough to fill all the width of the container. This will NOT happen with <strong>align items</strong>. For example:</p>
-                
 <pre class="code">
 .grid-container {
     display: grid;
@@ -162,7 +161,8 @@
     gap: 1rem;
 
     justify-content: space-between;
-    align-items: start;
+    align-content: center;
+    min-height: 300px;
 }
 </pre>
 
@@ -175,19 +175,40 @@
                     <div class="cell">cell 6</div>
                 </div>
 
-                <p>There is A LOT of information in this code. First, since each column has <strong>200px of width</strong>, the three columns will NOT fill the total width of the grid-container. Because of that, <strong>justify-content</strong> will work table-wise, and since the value is <strong>space-between</strong>, the items will get scattered howizontally. We can NOT say the same with <strong>align-items</strong>: even when the two rows' height is not enough to fill the total height of the grid-container, the items are vertically aligned relative to EACH CELL, not table-wise.</p>
+                <p class="mt-1">The centering part is possible because the grid-conatainer is actually taller than the sum of the rows' heights (remember it has <strong>min-height: 300px</strong>). Depending on the different relationships between the grid-container and the rows (in terms of heights), we can end up having these vertical alignments or not.</p>
 
-                <p>Let's see now what happens when each column is <strong>1fr of width</strong>, and the total width of the container is filled:</p>
+                <p>You might have notice also that both <strong>justify-content</strong> and <strong>align-content</strong> add a new value that flexbox doesnt have: <strong>space-evenly</strong>. This value works like a middle-case between <strong>space-between</strong> and <strong>space-around</strong>, giving EXACTLY the same space between the cells of the grid relative to each other and also relative to the edges of the grid-container.</p>
+                    
+                <p>Now, as we already said, <strong>justify-content</strong> and <strong>align-content</strong> are NOT the only alignment options in Grid. We also have the items-based alignment properties: <strong>justify-items</strong>, <strong>justify-self</strong>, <strong>align-items</strong> and <strong>align-self</strong>. All of these handle THE CONTENT INSIDE ITEMS, and not the cells inside the grid.</p>
+
+
+                <h4 class="mt-3">Item-level Alignments</h4>
+
+                <p class="mt-1">For the four properties listed above, we will have the following values:</p>
+
+                <ul class="lis-no-margin">
+                    <li>stretch</li>
+                    <li>start</li>
+                    <li>center</li>
+                    <li>end</li>
+                    <li>right</li>
+                </ul>
+
+                <p class="mt-1">Where <strong>stretch</strong> is the default one. Let's change that. We will add now <strong>justify-items</strong> and <strong>align-items</strong> to our previous example. The idea is the horizontally center the content of each cell and align it to the top:</p>
 
 <pre class="code">
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 200px);
     grid-auto-rows: 100px;
     gap: 1rem;
 
     justify-content: space-between;
+    align-content: center;
+    justify-items: center;
     align-items: start;
+
+    min-height: 300px;
 }
 </pre>
 
@@ -200,9 +221,68 @@
                     <div class="cell">cell 6</div>
                 </div>
 
-                <p>Now <strong>justify-content</strong> besically doesnt matter, since the only space between cells is the one determined by <strong>gap</strong>. In this case, OBVIOUSLY, we could center THE CONTENT of the cell using <strong>text-align</strong>, <strong>flexbox</strong> or any other technique we want, even <strong>grid</strong>!</p>
+                <p class="mt-1">It might look weird, but it is actually the intended behavior. In order to understand that, let's check the following image, that shows the <strong>grid distribution</strong>, something all modern browsers have in their dev tools:</p>
 
-                <p>The default value for <strong>justify-content</strong> is <strong>start</strong>, while the default value for <strong>align-items</strong> is <strong>stretch</strong>. Finally, we can use the <strong>place-items</strong>, that is just a shorthand for both <strong>justify-content</strong> and <strong>align-items</strong>. We, however, first write the <strong>align-items</strong> value, and then the <strong>justify-content</strong> one. So, for example <span class="green"><strong>place-items: center space-between</strong></span>.</p>
+                <img src="../assets/images/table-align01.png" class="img-fluid" alt="">
+
+                <p class="mt-1">Now we can clearly see the impact of every property applied to the grid. We can also target specific cells and change their alignments with <strong>justify-self</strong> and <strong>align-self</strong>:</p>
+
+<pre class="code">
+&lt;div class="example-box example-box-t006 grid-table"&gt;
+    &lt;div class="cell cell-1"&gt;cell 1&lt;/div&gt;
+    &lt;div class="cell"&gt;cell 2&lt;/div&gt;
+    &lt;div class="cell cell-3"&gt;cell 3&lt;/div&gt;
+    &lt;div class="cell"&gt;cell 4&lt;/div&gt;
+    &lt;div class="cell cell-5"&gt;cell 5&lt;/div&gt;
+    &lt;div class="cell"&gt;cell 6&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-auto-rows: 100px;
+    gap: 1rem;
+
+    justify-content: space-between;
+    align-content: center;
+    justify-items: center;
+    align-items: start;
+
+    min-height: 300px;
+}
+
+.grid-container .cell-1 {
+    justify-self: stretch;
+    align-self: stretch;
+}
+
+.grid-container .cell-3 {
+    justify-self: end;
+    align-self: stretch;
+}
+
+.grid-container .cell-5 {
+    justify-self: stretch;
+    align-self: center;
+}
+</pre>
+
+                <div class="example-box example-box-t006 grid-table">
+                    <div class="cell cell-1">cell 1</div>
+                    <div class="cell">cell 2</div>
+                    <div class="cell cell-3">cell 3</div>
+                    <div class="cell">cell 4</div>
+                    <div class="cell cell-5">cell 5</div>
+                    <div class="cell">cell 6</div>
+                </div>
+
+                <p class="mt-1">Once again, we can check the <strong>grid distribution</strong> to confirm that everything is accurate:</p>
+
+                <img src="../assets/images/table-align02.png" class="img-fluid" alt="">
+
+                <p class="mt-1">These results might appean like we are just sending random values into the grid, but the thruth is that they are a crucial part of creating beautiful and powerfull grid layouts, as we will see later.</p>
+
+                <p>Finally, because it is important for the next point, we should remember AGAIN that the default property for the four item-level aligment properties is <strong>strecth</strong>.</p>
 
 
                 <h4 class="mt-3">Row Heights</h4>
