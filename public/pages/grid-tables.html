@@ -287,7 +287,78 @@
 
                 <h4 class="mt-3">Row Heights</h4>
                 
-                <p class="mt-1">...:</p>
+                <p class="mt-1">In CSS Grid, every row is called a <strong>Grid Track</strong>. As we know now, the default value for <strong>align-items</strong> is <strong>stretch</strong>, what makes each cell vertically expand all the way to 'fill' the row's height (the track). This allows us to create pretty easy grids for instances like archive pages (for example blog pages), etc. Now, the cool thing about all this is that the REAL height of the row (the grid track) <strong>is defined by THE CONTENT of the tallest element of the track</strong>. This, HOWEVER, will turn the <strong>grid-auto-row</strong> property into some kind-of a problem, because it works as a <strong>height</strong> property, clamping the height of the row even if we have a content that expands beyond it. For example:</p> 
+                
+                
+
+
+<pre class="code">
+&lt;div class="example-box example-box-r001 grid-row-container"&gt;
+    &lt;div class="cell-1"&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet. Est aliquam perferendis quo modi alias et obcaecati esse. Quo vero quia eum ullam sequi sit sint laudantium qui deleniti sunt? Et tenetur minima eos quia voluptatem est expedita suscipit cum asperiores ducimus qui necessitatibus sunt et provident quas. Non adipisci officia sed esse minus qui galisum praesentium et inventore repellendus est vero quia hic cumque possimus qui quisquam laborum! Qui fuga enim est laudantium quidem aut itaque doloremque vel rerum excepturi quo optio magni et beatae quis aut labore voluptatem. Ea totam galisum aut consectetur sint aut consequatur nihil. In optio voluptatibus et quasi laborum ex necessitatibus voluptatum est maxime molestiae est error expedita aut reprehenderit rerum. Sit esse Quis qui provident dolorum ut eaque aperiam est blanditiis sint et autem laborum.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="cell-2"&gt;cell 2&lt;/div&gt;
+    &lt;div class="cell-3"&gt;cell 3&lt;/div&gt;
+    &lt;div class="cell-4"&gt;cell 4&lt;/div&gt;
+    &lt;div class="cell-5"&gt;cell 5&lt;/div&gt;
+    &lt;div class="cell-6"&gt;cell 6&lt;/div&gt;
+&lt;/div&gt;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 100px;
+    gap: 1rem;
+
+    justify-content: space-between;
+}
+</pre>
+
+                <p class="mt-1">And the result (you can see how the first cell's content gets overflown because of the <strong>grid-auto-row: 100px</strong>):</p>
+
+                <div class="example-box example-box-t007 grid-table">
+                    <div class="cell">
+                        <p>Lorem ipsum dolor sit amet. Est aliquam perferendis quo modi alias et obcaecati esse. Quo vero quia eum ullam sequi sit sint laudantium qui deleniti sunt? Et tenetur minima eos quia voluptatem est expedita suscipit cum asperiores ducimus qui necessitatibus sunt et provident quas. Non adipisci officia sed esse minus qui galisum praesentium et inventore repellendus est vero quia hic cumque possimus qui quisquam laborum! Qui fuga enim est laudantium quidem aut itaque doloremque vel rerum excepturi quo optio magni et beatae quis aut labore voluptatem. Ea totam galisum aut consectetur sint aut consequatur nihil. In optio voluptatibus et quasi laborum ex necessitatibus voluptatum est maxime molestiae est error expedita aut reprehenderit rerum. Sit esse Quis qui provident dolorum ut eaque aperiam est blanditiis sint et autem laborum.</p>
+                    </div>
+
+                    <div class="cell">cell 2</div>
+                    <div class="cell">cell 3</div>
+                    <div class="cell">cell 4</div>
+                    <div class="cell">cell 5</div>
+                    <div class="cell">cell 6</div>
+                </div>
+
+                <p class="mt-1">Luckily, we ALREADY KNOW how to solve this: by using the <strong>minmax</strong> grid function, that will convert <strong>grid-auto-row</strong> into something like a <strong>min-height</strong> instead of just <strong>height</strong>. The value we will use is simple: <strong>grid-auto-row: minmax(100px, auto)</strong>. With this, if we don't have enough content, <strong>100px</strong> will be applied. Otherwise, it will go with <strong>auto</strong>, expanding the height of the cell (and the whole track) as it is needed:</p>
+
+<pre class="code">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1rem;
+
+    justify-content: space-between;
+}
+</pre>
+
+                <div class="example-box example-box-t008 grid-table">
+                    <div class="cell">
+                        <p>Lorem ipsum dolor sit amet. Est aliquam perferendis quo modi alias et obcaecati esse. Quo vero quia eum ullam sequi sit sint laudantium qui deleniti sunt? Et tenetur minima eos quia voluptatem est expedita suscipit cum asperiores ducimus qui necessitatibus sunt et provident quas. Non adipisci officia sed esse minus qui galisum praesentium et inventore repellendus est vero quia hic cumque possimus qui quisquam laborum! Qui fuga enim est laudantium quidem aut itaque doloremque vel rerum excepturi quo optio magni et beatae quis aut labore voluptatem. Ea totam galisum aut consectetur sint aut consequatur nihil. In optio voluptatibus et quasi laborum ex necessitatibus voluptatum est maxime molestiae est error expedita aut reprehenderit rerum. Sit esse Quis qui provident dolorum ut eaque aperiam est blanditiis sint et autem laborum.</p>
+                    </div>
+
+                    <div class="cell">cell 2</div>
+                    <div class="cell">cell 3</div>
+                    <div class="cell">cell 4</div>
+                    <div class="cell">cell 5</div>
+                    <div class="cell">cell 6</div>
+                </div>
+
+                <p class="mt-1">And now it works perfectly. Row 1 uses <strong>auto</strong> as <strong>grid-auto-row</strong>, expanding the height of the whole track, while row 2 uses <strong>100px</strong>. Grid is simply that awesome.</p>
+
+
+                <h4 class="mt-3">Items Placement</h4>
+                
+                <p class="mt-1">The same way we can alter the position of elements inside a flex container by using the <strong>order</strong> property over the items, we can also modify where every item is placed inside a grid container.:</p> 
 
 
                 <p class="mt-2">This example concludes the basic rows layouts of CSS Grid. It looks pretty slim compared against the big "Columns" chapter, but manu of the basics were covered in that "Columns" chapter, and the rest easy properties will be seen in the next chapter, <a href="./grid-tables.html">Next: Grid Tables</a>.</p>
